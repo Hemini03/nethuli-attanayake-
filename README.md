@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Nethuli Attanayake — Editorial Fashion Portfolio
 
-## Getting Started
+A sample bilingual portfolio for **Nethuli Attanayake**, a recently graduated fashion designer based in France. Photography, type, and space do the talking. Replace the sample lookbooks with her real work.
 
-First, run the development server:
+French is the default language. English lives at `/en`. Collection titles stay French in both languages.
+
+## Stack
+
+Next.js 16 · TypeScript · Tailwind CSS v4 · GSAP · Lenis · Sanity · Vercel
+
+The site runs immediately on fallback content. Sanity is optional until you connect a project.
+
+## Start
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `/` — French home
+- `/en` — English home
+- `/studio` — Sanity Studio (after env vars are set)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Customize in five minutes
 
-## Learn More
+1. Bio, email, Instagram, city, degree — edit [`src/lib/content/fallback.ts`](src/lib/content/fallback.ts) or the Sanity **Site** document.
+2. Replace Unsplash URLs with her own photography (`fashionImage` fields in Studio, or `src` in fallback).
+3. Rewrite collection titles and stories if her names differ.
+4. Point a domain on Vercel.
 
-To learn more about Next.js, take a look at the following resources:
+Sample copy and images are placeholders. Photographer credits are listed in the footer.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Sanity (optional)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Create a project at [sanity.io](https://www.sanity.io).
+2. Copy [`.env.example`](.env.example) to `.env.local`.
+3. Set `NEXT_PUBLIC_SANITY_PROJECT_ID` and `NEXT_PUBLIC_SANITY_DATASET`.
+4. Create a write token and set `SANITY_API_WRITE_TOKEN`.
+5. Seed the sample universe:
 
-## Deploy on Vercel
+```bash
+npm run seed
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+6. Open `/studio` to edit collections, process images, journal notes, and the about page.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Until those variables exist, the public site uses [`src/lib/content/fallback.ts`](src/lib/content/fallback.ts).
+
+## Contact form
+
+The contact form opens a `mailto:` draft by default. If `RESEND_API_KEY` and `CONTACT_TO_EMAIL` are set, it sends through Resend instead.
+
+## Deploy
+
+Push to GitHub and import the repo in Vercel. Add the same env vars in the Vercel project if you are using Sanity or Resend.
+
+## Notes
+
+- `prefers-reduced-motion` disables Lenis, the preloader, SplitText, and pinned lookbook scrolling.
+- Unsplash photographs are licensed for this sample and should be replaced before presenting the site as her official portfolio.

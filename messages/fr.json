@@ -1,0 +1,81 @@
+{
+  "meta": {
+    "title": "Nethuli Attanayake — Design de mode, France",
+    "description": "Portfolio éditorial de Nethuli Attanayake, designeuse récemment diplômée, basée en France. Collections, lookbooks et recherches d'atelier."
+  },
+  "nav": {
+    "collections": "Collections",
+    "journal": "Journal",
+    "about": "À propos",
+    "contact": "Contact",
+    "menu": "Menu",
+    "close": "Fermer"
+  },
+  "hero": {
+    "scroll": "Défiler",
+    "based": "Basée en France"
+  },
+  "manifesto": {
+    "label": "Manifeste"
+  },
+  "index": {
+    "label": "Index des collections",
+    "view": "Voir la collection"
+  },
+  "lookbook": {
+    "label": "Lookbook",
+    "look": "Look"
+  },
+  "atelier": {
+    "label": "Atelier",
+    "title": "Le métier avant l'image"
+  },
+  "process": {
+    "label": "Processus",
+    "sketch": "Croquis",
+    "fabric": "Matière",
+    "toile": "Toile"
+  },
+  "journal": {
+    "label": "Journal",
+    "title": "Notes d'atelier",
+    "read": "Lire"
+  },
+  "about": {
+    "label": "À propos",
+    "education": "Formation",
+    "skills": "Savoir-faire",
+    "availability": "Disponibilité"
+  },
+  "contact": {
+    "label": "Contact",
+    "title": "Écrire à l'atelier",
+    "name": "Nom",
+    "email": "Email",
+    "subject": "Sujet",
+    "message": "Message",
+    "send": "Envoyer",
+    "sending": "Envoi…",
+    "success": "Message préparé. Si rien ne s'ouvre, écrivez directement.",
+    "error": "Une erreur s'est produite. Écrivez directement par email.",
+    "subjects": {
+      "maison": "Maison / recrutement",
+      "collaboration": "Collaboration",
+      "press": "Presse",
+      "other": "Autre"
+    }
+  },
+  "footer": {
+    "sample": "Échantillon de portfolio — à personnaliser",
+    "credits": "Photographies Unsplash (licence libre), à remplacer par les shootings de Nethuli.",
+    "studio": "Atelier"
+  },
+  "common": {
+    "season": "Saison",
+    "year": "Année",
+    "back": "Retour",
+    "next": "Suivant",
+    "allCollections": "Toutes les collections",
+    "openLookbook": "Ouvrir le lookbook"
+  }
+}

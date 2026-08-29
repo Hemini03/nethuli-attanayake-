@@ -1,0 +1,81 @@
+{
+  "meta": {
+    "title": "Nethuli Attanayake — Fashion Design, France",
+    "description": "Editorial portfolio of Nethuli Attanayake, a recently graduated fashion designer based in France. Collections, lookbooks, and atelier research."
+  },
+  "nav": {
+    "collections": "Collections",
+    "journal": "Journal",
+    "about": "About",
+    "contact": "Contact",
+    "menu": "Menu",
+    "close": "Close"
+  },
+  "hero": {
+    "scroll": "Scroll",
+    "based": "Based in France"
+  },
+  "manifesto": {
+    "label": "Manifesto"
+  },
+  "index": {
+    "label": "Collection index",
+    "view": "View collection"
+  },
+  "lookbook": {
+    "label": "Lookbook",
+    "look": "Look"
+  },
+  "atelier": {
+    "label": "Atelier",
+    "title": "Craft before the image"
+  },
+  "process": {
+    "label": "Process",
+    "sketch": "Sketch",
+    "fabric": "Cloth",
+    "toile": "Toile"
+  },
+  "journal": {
+    "label": "Journal",
+    "title": "Studio notes",
+    "read": "Read"
+  },
+  "about": {
+    "label": "About",
+    "education": "Education",
+    "skills": "Craft",
+    "availability": "Availability"
+  },
+  "contact": {
+    "label": "Contact",
+    "title": "Write to the atelier",
+    "name": "Name",
+    "email": "Email",
+    "subject": "Subject",
+    "message": "Message",
+    "send": "Send",
+    "sending": "Sending…",
+    "success": "Message prepared. If nothing opens, write directly by email.",
+    "error": "Something went wrong. Please write directly by email.",
+    "subjects": {
+      "maison": "House / hiring",
+      "collaboration": "Collaboration",
+      "press": "Press",
+      "other": "Other"
+    }
+  },
+  "footer": {
+    "sample": "Portfolio sample — meant to be customized",
+    "credits": "Unsplash photography (free license), to be replaced with Nethuli’s own shoots.",
+    "studio": "Studio"
+  },
+  "common": {
+    "season": "Season",
+    "year": "Year",
+    "back": "Back",
+    "next": "Next",
+    "allCollections": "All collections",
+    "openLookbook": "Open lookbook"
+  }
+}
