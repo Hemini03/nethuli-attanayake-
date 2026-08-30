@@ -37,7 +37,7 @@ export function ProgressBar() {
     <div
       ref={barRef}
       data-progress
-      className="pointer-events-none fixed top-0 left-0 z-[70] h-px w-full origin-left bg-oxblood mix-blend-multiply"
+      className="pointer-events-none fixed top-0 left-0 z-[70] h-px w-full origin-left bg-oxblood"
     />
   );
 }

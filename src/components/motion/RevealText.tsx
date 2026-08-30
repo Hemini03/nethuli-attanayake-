@@ -29,26 +29,31 @@ export function RevealText({
     const el = ref.current;
     if (!el || prefersReducedMotion()) return;
 
-    const ctx = gsap.context(() => {
-      const split = SplitText.create(el, {
-        type: "words",
-        aria: "hidden",
-      });
+    let ctx: gsap.Context | undefined;
+    try {
+      ctx = gsap.context(() => {
+        const split = SplitText.create(el, {
+          type: "words",
+          aria: "hidden",
+        });
 
-      gsap.from(split.words, {
-        yPercent: 110,
-        duration: 1.15,
-        ease: "power4.out",
-        stagger: 0.035,
-        delay,
-        scrollTrigger: {
-          trigger: el,
-          start: "top 88%",
-        },
-      });
-    }, el);
+        gsap.from(split.words, {
+          yPercent: 110,
+          duration: 1.15,
+          ease: "power4.out",
+          stagger: 0.035,
+          delay,
+          scrollTrigger: {
+            trigger: el,
+            start: "top 88%",
+          },
+        });
+      }, el);
+    } catch {
+      return;
+    }
 
-    return () => ctx.revert();
+    return () => ctx?.revert();
   }, [delay]);
 
   return (

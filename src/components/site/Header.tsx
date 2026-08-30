@@ -1,20 +1,45 @@
 "use client";
 
 import { useState } from "react";
-import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
+import { useLocale, useTranslations } from "next-intl";
+import { getPathname, usePathname } from "@/i18n/navigation";
 import { LanguageSwitcher } from "./LanguageSwitcher";
+
+type AppPath = "/" | "/collections" | "/journal" | "/about" | "/contact";
+
+const links: { href: AppPath; key: "collections" | "journal" | "about" | "contact" }[] = [
+  { href: "/collections", key: "collections" },
+  { href: "/journal", key: "journal" },
+  { href: "/about", key: "about" },
+  { href: "/contact", key: "contact" },
+];
+
+function NavAnchor({
+  href,
+  className,
+  children,
+  onClick,
+}: {
+  href: AppPath;
+  className?: string;
+  children: React.ReactNode;
+  onClick?: () => void;
+}) {
+  const locale = useLocale();
+  const path = getPathname({ locale, href });
+
+  return (
+    <a href={path} className={className} onClick={onClick}>
+      {children}
+    </a>
+  );
+}
 
 export function Header() {
   const t = useTranslations("nav");
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
-
-  const links = [
-    { href: "/collections" as const, label: t("collections") },
-    { href: "/journal" as const, label: t("journal") },
-    { href: "/about" as const, label: t("about") },
-    { href: "/contact" as const, label: t("contact") },
-  ];
+  const onHome = pathname === "/";
 
   return (
     <>
@@ -24,20 +49,24 @@ export function Header() {
       >
         Skip to content
       </a>
-      <header className="mix-header pointer-events-none fixed inset-x-0 top-0 z-50 px-5 py-5 md:px-8">
+      <header
+        className={`pointer-events-none fixed inset-x-0 top-0 z-50 px-5 py-5 md:px-8 ${
+          onHome ? "text-paper" : "text-ink"
+        }`}
+      >
         <div className="pointer-events-auto flex items-start justify-between">
-          <Link href="/" className="text-[12px] font-medium uppercase tracking-[0.34em]">
+          <NavAnchor href="/" className="text-[12px] font-medium uppercase tracking-[0.34em]">
             Nethuli Attanayake
-          </Link>
+          </NavAnchor>
           <nav className="hidden items-center gap-7 md:flex">
             {links.map((link) => (
-              <Link
+              <NavAnchor
                 key={link.href}
                 href={link.href}
                 className="text-[11px] uppercase tracking-[0.28em] opacity-80 transition-opacity hover:opacity-100"
               >
-                {link.label}
-              </Link>
+                {t(link.key)}
+              </NavAnchor>
             ))}
             <LanguageSwitcher />
           </nav>
@@ -65,14 +94,14 @@ export function Header() {
           </div>
           <nav className="flex flex-col gap-4">
             {links.map((link) => (
-              <Link
+              <NavAnchor
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
                 className="font-display text-5xl italic leading-none"
               >
-                {link.label}
-              </Link>
+                {t(link.key)}
+              </NavAnchor>
             ))}
           </nav>
           <LanguageSwitcher />

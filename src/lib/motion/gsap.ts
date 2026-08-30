@@ -6,6 +6,10 @@ let registered = false;
 
 export function registerGsap() {
   if (registered) return;
-  gsap.registerPlugin(ScrollTrigger, SplitText);
-  registered = true;
+  try {
+    gsap.registerPlugin(ScrollTrigger, SplitText);
+    registered = true;
+  } catch {
+    registered = false;
+  }
 }

@@ -24,7 +24,7 @@ export async function Hero({ content, locale }: Props) {
         sizes="100vw"
         className="object-cover"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-ink/55 via-ink/10 to-ink/20" />
+      <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-ink/15 to-ink/45" />
       <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col justify-end px-5 pb-10 text-paper md:px-8 md:pb-12">
         <p className="text-[11px] uppercase tracking-[0.34em] text-oxblood">
           {collection.season} · {t("based")}
