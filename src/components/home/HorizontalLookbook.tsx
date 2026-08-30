@@ -4,7 +4,6 @@ import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Link } from "@/i18n/navigation";
 import { registerGsap } from "@/lib/motion/gsap";
 import { prefersReducedMotion } from "@/lib/motion/reduced";
@@ -32,25 +31,23 @@ export function HorizontalLookbook({ items, locale }: Props) {
     if (!section || !track || prefersReducedMotion()) return;
     if (window.matchMedia("(max-width: 768px)").matches) return;
 
-    const tween = gsap.to(track, {
-      x: () => -(track.scrollWidth - section.clientWidth),
-      ease: "none",
-      scrollTrigger: {
-        trigger: section,
-        start: "top top",
-        end: () => `+=${track.scrollWidth}`,
-        pin: true,
-        scrub: 0.6,
-        invalidateOnRefresh: true,
-      },
-    });
+    const ctx = gsap.context(() => {
+      gsap.to(track, {
+        x: () => -(track.scrollWidth - section.clientWidth),
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          start: "top top",
+          end: () => `+=${Math.max(track.scrollWidth - section.clientWidth, 1)}`,
+          pin: true,
+          scrub: 0.6,
+          invalidateOnRefresh: true,
+          anticipatePin: 1,
+        },
+      });
+    }, section);
 
-    return () => {
-      tween.kill();
-      ScrollTrigger.getAll()
-        .filter((trigger) => trigger.trigger === section)
-        .forEach((trigger) => trigger.kill());
-    };
+    return () => ctx.revert();
   }, [items.length]);
 
   return (

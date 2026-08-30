@@ -66,8 +66,10 @@ img {
 }
 
 .mix-header {
+  isolation: isolate;
   mix-blend-mode: difference;
   color: #fff;
+  transform: translateZ(0);
 }
 
 @media (prefers-reduced-motion: reduce) {

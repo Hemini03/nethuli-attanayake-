@@ -3,11 +3,15 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
+import { usePathname } from "@/i18n/navigation";
 import { registerGsap } from "./gsap";
 import { prefersReducedMotion } from "./reduced";
 
 export function MotionProvider({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+  const lenisRef = useRef<Lenis | null>(null);
+
   useEffect(() => {
     registerGsap();
 
@@ -21,6 +25,7 @@ export function MotionProvider({ children }: { children: React.ReactNode }) {
       autoRaf: false,
     });
 
+    lenisRef.current = lenis;
     lenis.on("scroll", ScrollTrigger.update);
 
     const ticker = (time: number) => {
@@ -37,8 +42,21 @@ export function MotionProvider({ children }: { children: React.ReactNode }) {
       window.removeEventListener("resize", onResize);
       gsap.ticker.remove(ticker);
       lenis.destroy();
+      lenisRef.current = null;
     };
   }, []);
+
+  useEffect(() => {
+    const lenis = lenisRef.current;
+    lenis?.stop();
+    const id = window.requestAnimationFrame(() => {
+      ScrollTrigger.refresh();
+      lenis?.resize();
+      lenis?.start();
+      window.scrollTo(0, 0);
+    });
+    return () => window.cancelAnimationFrame(id);
+  }, [pathname]);
 
   return <>{children}</>;
 }

@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState, useSyncExternalStore } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { gsap } from "gsap";
+import { usePathname } from "@/i18n/navigation";
 import { registerGsap } from "@/lib/motion/gsap";
 import { prefersReducedMotion } from "@/lib/motion/reduced";
 
@@ -18,8 +19,16 @@ function useHasSeenIntro() {
 
 export function Preloader() {
   const seen = useHasSeenIntro();
+  const pathname = usePathname();
+  const initialPath = useRef(pathname);
   const [done, setDone] = useState(false);
   const visible = !seen && !done;
+
+  useEffect(() => {
+    if (pathname === initialPath.current) return;
+    sessionStorage.setItem(STORAGE_KEY, "1");
+    setDone(true);
+  }, [pathname]);
 
   useEffect(() => {
     if (seen) return;

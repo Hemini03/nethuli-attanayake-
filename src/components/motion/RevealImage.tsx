@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { prefersReducedMotion } from "@/lib/motion/reduced";
 import { registerGsap } from "@/lib/motion/gsap";
 
@@ -19,26 +18,23 @@ export function RevealImage({ children, className }: Props) {
     const el = ref.current;
     if (!el || prefersReducedMotion()) return;
 
-    const tween = gsap.fromTo(
-      el,
-      { clipPath: "inset(100% 0% 0% 0%)" },
-      {
-        clipPath: "inset(0% 0% 0% 0%)",
-        duration: 1.35,
-        ease: "power4.inOut",
-        scrollTrigger: {
-          trigger: el,
-          start: "top 88%",
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        el,
+        { clipPath: "inset(100% 0% 0% 0%)" },
+        {
+          clipPath: "inset(0% 0% 0% 0%)",
+          duration: 1.35,
+          ease: "power4.inOut",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 88%",
+          },
         },
-      },
-    );
+      );
+    }, el);
 
-    return () => {
-      tween.kill();
-      ScrollTrigger.getAll()
-        .filter((trigger) => trigger.trigger === el)
-        .forEach((trigger) => trigger.kill());
-    };
+    return () => ctx.revert();
   }, []);
 
   return (
